@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace PHARMACY
 {
@@ -15,8 +15,8 @@ namespace PHARMACY
         public UpdateDebtor(String pfn)
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             updatedebtorpfsession.Text = pfn;
             viewDebtor();
@@ -53,7 +53,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
                 //SELECT `debtor`.`id` AS 'ID',`debtor`.`name` AS 'NAME',`drug`.`name` AS 'DRUG NAME',`debtor`.`quantity` AS 'QUANTITY',`debtor`.`date_borrowed` AS 'DATE BORROWED',`debtor`.`phone` AS 'PHONE',`debtor`.`deposit` AS 'DEPOSIT',`debtor`.`date_of_payment` AS 'DATE OF PAYMENT',`debtor`.`pfno` AS 'REGISTERED BY',`debtor`.`registered_date` AS 'REGISTRATION DATE' FROM `drug` JOIN `debtor` ON `drug`.`id`=`debtor`.`drug_id` GROUP BY `debtor`.`id` ASC
                 MySqlCommand com = new MySqlCommand("SELECT `drug`.`id` AS 'Drug ID',`drug`.`price` AS price, `debtor`.`id` AS id,`debtor`.`name` AS name,`debtor`.`drug_id` AS drug_id,`debtor`.`quantity` AS quantity,`debtor`.`date_borrowed` AS date_borrowed,`debtor`.`phone` AS phone,`debtor`.`deposit` AS deposit,`debtor`.`date_of_payment` AS date_of_payment,`debtor`.`pfno` AS pfno,`debtor`.`registered_date` AS registered_date FROM `drug` JOIN `debtor` ON `drug`.`id`=`debtor`.`drug_id` WHERE (`drug`.`price`*`debtor`.`quantity`)>=`debtor`.`deposit` ORDER BY `debtor`.`date_borrowed` DESC ", con);
@@ -101,7 +101,7 @@ namespace PHARMACY
             updateSearchDebtor.AutoCompleteSource = AutoCompleteSource.CustomSource;
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -128,7 +128,7 @@ namespace PHARMACY
         //fill data in fields
         public void showDebtorData()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -172,7 +172,7 @@ namespace PHARMACY
         //save to sales
         public void saveToSales() {
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -211,7 +211,7 @@ namespace PHARMACY
         {
             string borrowedDate = updateDateBorrowed.Value.ToString("yyyy-MM-dd");
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -256,7 +256,7 @@ namespace PHARMACY
         public void drugCombo()
         {
             MySqlConnection con;
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             con = new MySqlConnection(db);
 
             con.Open();
@@ -282,7 +282,7 @@ namespace PHARMACY
         public void drugForeignKey()
         {
             MySqlConnection con;
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
 
             try
             {

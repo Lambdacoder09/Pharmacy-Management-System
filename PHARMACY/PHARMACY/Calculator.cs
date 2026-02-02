@@ -18,8 +18,8 @@ namespace PHARMACY
         public Calculator()
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
         }
 
         private void button_click(object sender, EventArgs e)

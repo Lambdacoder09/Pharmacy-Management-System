@@ -85,13 +85,20 @@
     <Reference Include="itextsharp.xtra">
       <HintPath>.\itextsharp.xtra.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.3.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MYSQLBACKUP\binaries\v4.0\MySql.Data.dll</HintPath>
+    <Reference Include="System.Memory">
+      <HintPath>.\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="MySqlBackup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MYSQLBACKUP\binaries\v4.0\MySqlBackup.dll</HintPath>
+    <Reference Include="MySqlConnector">
+      <HintPath>.\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>.\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>.\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>.\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -134,12 +141,6 @@
     </Compile>
     <Compile Include="AddSupplier.Designer.cs">
       <DependentUpon>AddSupplier.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminHelp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminHelp.Designer.cs">
-      <DependentUpon>AdminHelp.cs</DependentUpon>
     </Compile>
     <Compile Include="Calculator.cs">
       <SubType>Form</SubType>
@@ -330,9 +331,6 @@
     <EmbeddedResource Include="AddSupplier.resx">
       <DependentUpon>AddSupplier.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminHelp.resx">
-      <DependentUpon>AdminHelp.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Calculator.resx">
       <DependentUpon>Calculator.cs</DependentUpon>
     </EmbeddedResource>
@@ -448,23 +446,6 @@
     <None Include="Resources\pmsoverview.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AcroPDFLib">
-      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="AxAcroPDFLib">
-      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

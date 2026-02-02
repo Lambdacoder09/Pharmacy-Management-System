@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -18,8 +18,8 @@ namespace PHARMACY
         public MoreSalesReports()
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             salesView();
         }
@@ -32,7 +32,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT sales_id AS 'ID', drug_name AS 'DRUG NAME',quantity AS 'QUANTITY',price AS 'PRICE', pfno AS 'SERVED BY',sales_date AS 'DATE SOLD',unit AS 'UNITS', serial AS 'RECEIPT NUMBER' FROM sales WHERE sales_date BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY sales_date ASC", con);
@@ -74,7 +74,7 @@ namespace PHARMACY
 
         public void totalSalesReports()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd");
@@ -108,7 +108,7 @@ namespace PHARMACY
             string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd");
             string endDate = endDateTimePicker.Value.ToString("yyyy-MM-dd");
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {

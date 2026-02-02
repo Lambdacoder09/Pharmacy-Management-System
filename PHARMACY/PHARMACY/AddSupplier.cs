@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace PHARMACY
 {
@@ -15,8 +15,8 @@ namespace PHARMACY
         public AddSupplier(String pfn)
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             addSupplierSessionPf.Text = pfn;
             addSupplierView();
@@ -44,7 +44,7 @@ namespace PHARMACY
             else
             {
 
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
                 try
                 {
@@ -82,7 +82,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT `supplier`.`id` AS 'Supplier Id',`supplier`.`name` AS 'Supplier Name',`supplier`.`phone` AS 'Supplier Phone',`supplier`.`address` AS 'Supplier Adress',`supplier`.`location` AS 'Supplier Location',`supplier`.`pfno` AS 'Registered By',`supplier`.`id` AS 'Registered Date' FROM supplier ORDER BY name ASC", con);

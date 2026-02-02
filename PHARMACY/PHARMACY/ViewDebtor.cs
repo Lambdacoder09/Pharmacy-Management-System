@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -19,8 +19,8 @@ namespace PHARMACY
         public ViewDebtor()
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             viewDebtor();
         }
@@ -38,7 +38,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT `debtor`.`id` AS 'ID',`debtor`.`name` AS 'NAME',`drug`.`name` AS 'DRUG NAME',`debtor`.`quantity` AS 'QUANTITY',`debtor`.`date_borrowed` AS 'DATE BORROWED',`debtor`.`phone` AS 'PHONE',`debtor`.`deposit` AS 'DEPOSIT',`debtor`.`date_of_payment` AS 'DATE OF PAYMENT',`debtor`.`pfno` AS 'REGISTERED BY',`debtor`.`registered_date` AS 'REGISTRATION DATE' FROM `drug` JOIN `debtor` ON `drug`.`id`=`debtor`.`drug_id`  ORDER BY `debtor`.`date_borrowed` DESC", con);

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using System.IO;
 using iTextSharp.text;
@@ -33,8 +33,8 @@ namespace PHARMACY
             //Welcome user.
             welcomeLabel.Text = firstname;
             //this.Icon = global::PHARMACY.Properties.Resources.form-icon;
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             setTime();
 
@@ -61,7 +61,7 @@ namespace PHARMACY
 
         //fetch image from database
              public void getImage() {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -74,7 +74,7 @@ namespace PHARMACY
                 while (r.Read())
                 {
                     //retrieve image from the database upon the user
-                    byte[] imgg = (byte[])(r["photo"]);
+                    byte[] imgg = (r["photo"] == DBNull.Value ? null : (byte[])r["photo"]);
                     if (imgg == null)
                     {
                         dashboardPictureBox.Image = null;
@@ -118,7 +118,7 @@ namespace PHARMACY
 
              public void checkCart()
              {
-                 string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                 string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                  MySqlConnection con = new MySqlConnection(db);
                  try
                  {
@@ -150,7 +150,7 @@ namespace PHARMACY
             cashSaleDrugSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -183,7 +183,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT `cart`.`cart_id` AS 'Item Id', `cart`.`drug_name` AS'Drug Name',`cart`.`quantity` AS 'Quantity',`cart`.`price` AS 'Price', ROUND((`cart`.`quantity`*`cart`.`price`),2) AS 'Total Amount',`cart`.`unit` AS 'Units' FROM `cart` ORDER BY `cart`.`cart_id` DESC", con);
@@ -209,7 +209,7 @@ namespace PHARMACY
         //fetch id from drug and use the foreign key
         public void drugForeignKey()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -255,7 +255,7 @@ namespace PHARMACY
         public void totalAmount()
         {
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -338,7 +338,7 @@ namespace PHARMACY
             //convert loginusername to integer
             int pf = Convert.ToInt32(pfsession.Text);
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -371,7 +371,7 @@ namespace PHARMACY
         //insert into cart
         public void insertToCart() {
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
              if ((this.cashSaleDrugSearch.Text!="") && (this.cashSaleQuantity.Text!="") && (this.pricePerUnit.Text!=""))
@@ -440,7 +440,7 @@ namespace PHARMACY
             try
             {
 
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 if (saleDashboardDataGridView.SelectedRows.Count > 0)
@@ -472,7 +472,7 @@ namespace PHARMACY
 
         //update net stock
         public void updateNetStock() {
-       string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+       string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
           try
             {
@@ -505,7 +505,7 @@ namespace PHARMACY
             //convert loginusername to integer
             int pf = Convert.ToInt32(pfsession.Text);
            
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             Random rd = new Random();
@@ -638,7 +638,7 @@ namespace PHARMACY
             //convert loginusername to integer
             int pf = Convert.ToInt32(pfsession.Text);
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             try
@@ -665,7 +665,7 @@ namespace PHARMACY
             //convert loginusername to integer
             int pf = Convert.ToInt32(pfsession.Text);
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             try

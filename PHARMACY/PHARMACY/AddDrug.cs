@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace PHARMACY
 {
@@ -15,8 +15,8 @@ namespace PHARMACY
         public AddDrug(String pfn)
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             drugpfsession.Text = pfn;
             addDrugView();
@@ -37,7 +37,7 @@ namespace PHARMACY
                 try
                 {
 
-                    string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                    string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                     MySqlConnection con = new MySqlConnection(db);
 
                      dialog = MessageBox.Show("Are you sure you want to register the drug details?", "DRUG DETALS REGISTRATION", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
@@ -81,7 +81,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT `drug`.`id` AS 'Drug Id', `drug`.`name` AS 'Drug Name', `drug`.`form` AS 'Drug Form',`drug`.`price` AS 'Drug Price',`drug`.`pfno` AS 'Registered By', `drug`.`registered_date` AS 'Registered Date' FROM drug ORDER BY name ASC", con);

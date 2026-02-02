@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace PHARMACY
 {
@@ -16,8 +16,8 @@ namespace PHARMACY
         public UpdateStock(String pfn)
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             updatestockpfsession.Text = pfn;
             supplierCombo();
@@ -58,7 +58,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT `stock`.`id` AS 'STOCK ID',`supplier`.`name` AS 'SUPPLIER NAME',`drug`.`name` AS 'DRUG NAME',`stock`.`buying_price` AS 'BUYING PRICE',`stock`.`selling_price` AS 'SELLING PRICE',`stock`.`quantity` AS 'QUANTITY', `stock`.`units` AS 'UNITS', `stock`.`expiry_date` AS 'EXPIRY DATE',`stock`.`batch_no` AS 'BATCH NUMBER',`stock`.`pfno` AS 'REGISTERED BY',`stock`.`registered_date` AS 'DATE REGISTERED' FROM `drug` JOIN `stock` ON `drug`.`id`=`stock`.`drug_id` JOIN `supplier` ON `supplier`.`id`=`stock`.`supplier_id` GROUP BY `stock`.`id` ORDER BY `stock`.`registered_date` DESC", con);
@@ -103,7 +103,7 @@ namespace PHARMACY
             searchUpdateStock.AutoCompleteSource = AutoCompleteSource.CustomSource;
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -129,7 +129,7 @@ namespace PHARMACY
         //fill data in fields
         public void showStockData()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -174,7 +174,7 @@ namespace PHARMACY
         public void updateStock()
         {
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -210,7 +210,7 @@ namespace PHARMACY
         //update drug price
         public void updateExpiryDate()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             try
@@ -231,7 +231,7 @@ namespace PHARMACY
         //update drug price
         public void updateDrudPrice()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             try
@@ -255,7 +255,7 @@ namespace PHARMACY
         public void supplierCombo()
         {
             MySqlConnection con;
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             con = new MySqlConnection(db);
 
             con.Open();
@@ -280,7 +280,7 @@ namespace PHARMACY
         public void drugCombo()
         {
             MySqlConnection con;
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             con = new MySqlConnection(db);
 
             con.Open();
@@ -304,7 +304,7 @@ namespace PHARMACY
         public void supplierForeignKey()
         {
             MySqlConnection con;
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
 
             try
             {
@@ -342,7 +342,7 @@ namespace PHARMACY
         public void drugForeignKey()
         {
             MySqlConnection con;
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
 
             try
             {

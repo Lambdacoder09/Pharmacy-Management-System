@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using System.Threading;
 
@@ -17,8 +17,8 @@ namespace PHARMACY
         public CashierReports()
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             //expired drugs
             expiredDrugs();
@@ -37,7 +37,7 @@ namespace PHARMACY
         public void lowDrugQuantityBeeps()
         {
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -74,7 +74,7 @@ namespace PHARMACY
         public void expiredDrugsBeeps()
         {
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -113,7 +113,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 DateTime dtt = DateTime.Now;
@@ -159,7 +159,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
 

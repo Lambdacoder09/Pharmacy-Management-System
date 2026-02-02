@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
@@ -25,8 +25,8 @@ namespace PHARMACY
             InitializeComponent();
             //t.Abort();
             
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
         
         }
 
@@ -43,7 +43,7 @@ namespace PHARMACY
             try
             {
 
-                String db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                String db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 con.Open();
@@ -89,7 +89,7 @@ namespace PHARMACY
             //convert loginusername to integer
             //int pf = Convert.ToInt32(loginusername.Text);
 
-           String db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+           String db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
            MySqlConnection con = new MySqlConnection(db);
 
            // DatabaseConnection con = new DatabaseConnection();
@@ -157,9 +157,9 @@ namespace PHARMACY
                     con.Close();
 
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-               // MessageBox.Show("Error has occured. Please try again with different data"+ex.Message);
+               MessageBox.Show("Error has occured: " + ex.Message + "\n\nStack Trace:\n" + ex.StackTrace);
             }
         }
 
@@ -173,7 +173,7 @@ namespace PHARMACY
 
               int pf = Convert.ToInt32(loginusername.Text);
 
-            String db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            String db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
         
             try{

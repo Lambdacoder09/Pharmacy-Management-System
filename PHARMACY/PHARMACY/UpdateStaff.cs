@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.IO;
 
 namespace PHARMACY
@@ -16,8 +16,8 @@ namespace PHARMACY
         public UpdateStaff()
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             viewStaff();
             searchStaff();
@@ -33,7 +33,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT pfno AS 'PFNO',firstname AS 'FIRST NAME',lastname AS 'LAST NAME',dob AS 'DATE OF BIRTH',gender AS 'GENDER',nationalid AS 'NATIONAL ID',phone AS 'PHONE', email AS 'EMAIL', county AS 'COUNTY', location AS 'LOCATION', doe AS 'DATE OF EMPLOYMENT',category AS 'CATEGORY' FROM staff ORDER BY pfno DESC", con);
@@ -97,7 +97,7 @@ namespace PHARMACY
             searchStaffUpdate.AutoCompleteSource = AutoCompleteSource.CustomSource;
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -124,7 +124,7 @@ namespace PHARMACY
         //fill data in fields
         public void showStaffData()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -170,7 +170,7 @@ namespace PHARMACY
 
 
                     //retrieve image from the database upon the user
-                    byte[] imgg = (byte[])(r["photo"]);
+                    byte[] imgg = (r["photo"] == DBNull.Value ? null : (byte[])r["photo"]);
                     if (imgg == null)
                     {
                         loadImagePictureBox.Image = null;
@@ -205,7 +205,7 @@ namespace PHARMACY
             else
             {
 
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 if (imagePathTextBox.Text == String.Empty)
@@ -300,7 +300,7 @@ namespace PHARMACY
         //deletes staff records from staff table
         public void deleteStaff()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {

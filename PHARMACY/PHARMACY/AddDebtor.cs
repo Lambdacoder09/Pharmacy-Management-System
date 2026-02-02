@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace PHARMACY
 {
@@ -15,8 +15,8 @@ namespace PHARMACY
         public AddDebtor(String pfn)
         {
             InitializeComponent();
-            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
-            this.Icon = ico;
+//            System.Drawing.Icon ico = new System.Drawing.Icon("C:\\PMS\\Resources\\form-icon.ico");
+            //this.Icon = ico;
 
             adddebtorpfsession.Text = pfn;
             addDebtorkView();
@@ -50,7 +50,7 @@ namespace PHARMACY
                 string borrowedDate = dateBorrowed.Value.ToString("yyyy-MM-dd");
                 string PaymentDate = dateOfPayment.Value.ToString("yyyy-MM-dd");
 
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
                 try
                 {
@@ -89,7 +89,7 @@ namespace PHARMACY
         //update net stock
         public void updateNetStock()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -112,7 +112,7 @@ namespace PHARMACY
 
             try
             {
-                string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+                string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
 
                 MySqlCommand com = new MySqlCommand("SELECT * FROM debtor ORDER BY date_borrowed DESC", con);
@@ -151,7 +151,7 @@ namespace PHARMACY
         //populate drug combo
         public void drugCombo()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             con.Open();
@@ -174,7 +174,7 @@ namespace PHARMACY
             try
             {
 
-                String db = "datasource=localhost; port=3306; username=root; password=root; database=pms;";
+                String db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
                 MySqlConnection con = new MySqlConnection(db);
                 con.Open();
                 MySqlCommand mc = new MySqlCommand("SELECT * FROM drug WHERE name='" + this.addDrugCombo.Text + "'", con);

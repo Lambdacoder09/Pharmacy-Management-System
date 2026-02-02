@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using System.IO;
 using iTextSharp.text;
@@ -31,7 +31,7 @@ namespace PHARMACY
         //fetch image from database
         public void getImage()
         {
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
             try
             {
@@ -44,7 +44,7 @@ namespace PHARMACY
                 while (r.Read())
                 {
                     //retrieve image from the database upon the user
-                    byte[] imgg = (byte[])(r["photo"]);
+                    byte[] imgg = (r["photo"] == DBNull.Value ? null : (byte[])r["photo"]);
                     if (imgg == null)
                     {
                         QuantitySalePictureBox.Image = null;
@@ -81,7 +81,7 @@ namespace PHARMACY
             //convert loginusername to integer
             int pf = Convert.ToInt32(pfsession.Text);
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             try
@@ -110,7 +110,7 @@ namespace PHARMACY
             //convert loginusername to integer
             int pf = Convert.ToInt32(pfsession.Text);
 
-            string db = "datasource=localhost; port=3306; username=root; password=root; database=pms";
+            string db = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
             MySqlConnection con = new MySqlConnection(db);
 
             try

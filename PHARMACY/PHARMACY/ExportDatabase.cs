@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace PHARMACY
 {
@@ -20,7 +20,7 @@ namespace PHARMACY
         }
 
         DialogResult dialog;
-        String databaseConnection = "datasource=127.0.0.1; username=root; password=root; database=pms";
+        String databaseConnection = "server=127.0.0.1; uid=root; pwd=root; database=pms;CharSet=utf8;";
 
         private void ExportDatabase_Load(object sender, EventArgs e)
         {
@@ -46,6 +46,7 @@ namespace PHARMACY
                     {
                         using (MySqlCommand command = new MySqlCommand())
                         {
+                            /*
                             using (MySqlBackup backup = new MySqlBackup(command))
                             {
 
@@ -55,7 +56,7 @@ namespace PHARMACY
                                 con.Close();
 
                             }
-
+                            */
                         }
 
                     }
